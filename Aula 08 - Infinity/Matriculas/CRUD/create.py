@@ -1,3 +1,5 @@
+import random
+
 def adicionaraluno(nome: str, curso: str) -> None:
     mat = random.randint(3, 1000)
     aluno = {
@@ -7,3 +9,5 @@ def adicionaraluno(nome: str, curso: str) -> None:
     }
     banco.append(aluno)
     print("Cadastro Realizado!!")
+
+
