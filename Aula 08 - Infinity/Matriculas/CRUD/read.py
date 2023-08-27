@@ -1,11 +1,11 @@
-def listaralunos():
+def listaralunos(banco: list) -> None:
     for i in banco:
         print(f"Matricula: {i['Matricula']}\n"
               f"Nome: {i['Nome']}\n"
               f"Curso: {i['Curso']}\n")
 
 
-def buscarAlunoMat(matricula: int) -> None:
+def buscarAlunoMat(matricula: int, banco: list) -> None:
     existe = False
     for aluno in banco:
         if aluno['Matricula'] == matricula:
@@ -13,5 +13,5 @@ def buscarAlunoMat(matricula: int) -> None:
                   f"Nome: {aluno['Nome']}\n"
                   f"Curso: {aluno['Curso']}\n")
             existe = True
-    if existe == False:
-        print("Matricula não existe!!")
+    if not existe:
+        print("Matricula não existe!!\n")
