@@ -1,13 +1,16 @@
 from tkinter import *
-from tkinter import messagebox
+
 
 app = Tk()
 
+# noinspection SpellCheckingInspection
 app.title("Calculadora")
 # app.geometry("250x380")
 
 #Função
-def limpar() -> None:
+
+
+def limpar():
     display.delete(0, END)
 
 
@@ -15,18 +18,16 @@ def inserir(valor: str) -> None:
     display.insert(END, valor)
 
 
-def calcular() -> None:
-    texto_display = display.get()
-    resultado = eval(texto_display)
+def calcular():
+    nome_display = display.get()
+    resultado = eval(nome_display)
     display.delete(0, END)
     display.insert(0, str(resultado))
 
+
 #Frame
 frame_button = Frame(app)
-frame_button.pack(pady=45)
-
-
-#Labels
+frame_button.pack(pady=30)
 
 
 #Entry
@@ -45,28 +46,40 @@ btn_2 = Button(frame_button, text="2", bg="Gray", font="Arial 12 bold", fg="Whit
 
 btn_3 = Button(frame_button, text="3", bg="Gray", font="Arial 12 bold", fg="White", height=3, width=5,
                command=lambda: inserir("3"))
+
 btn_4 = Button(frame_button, text="4", bg="Gray", font="Arial 12 bold", fg="White", height=3, width=5,
                command=lambda: inserir("4"))
+
 btn_5 = Button(frame_button, text="5", bg="Gray", font="Arial 12 bold", fg="White", height=3, width=5,
                command=lambda: inserir("5"))
+
 btn_6 = Button(frame_button, text="6", bg="Gray", font="Arial 12 bold", fg="White", height=3, width=5,
                command=lambda: inserir("6"))
+
 btn_7 = Button(frame_button, text="7", bg="Gray", font="Arial 12 bold", fg="White", height=3, width=5,
                command=lambda: inserir("7"))
+
 btn_8 = Button(frame_button, text="8", bg="Gray", font="Arial 12 bold", fg="White", height=3, width=5,
                command=lambda: inserir("8"))
+
 btn_9 = Button(frame_button, text="9", bg="Gray", font="Arial 12 bold", fg="White", height=3, width=5,
                command=lambda: inserir("9"))
+
 btn_igual = Button(frame_button, text="=", bg="Gray", font="Arial 12 bold", fg="White", height=3, width=5,
-                   command=lambda: calcular())
+                   command=calcular)
+
 btn_limpar = Button(frame_button, text="C", bg="Gray", font="Arial 12 bold", fg="White", height=3, width=5,
-                    command=lambda: limpar())
+                    command=limpar)
+
 btn_soma = Button(frame_button, text="+", bg="Gray", font="Arial 12 bold", fg="White", height=3, width=5,
                   command=lambda: inserir("+"))
+
 btn_multi = Button(frame_button, text="*", bg="Gray", font="Arial 12 bold", fg="White", height=3, width=5,
                    command=lambda: inserir("*"))
+
 btn_div = Button(frame_button, text="%", bg="Gray", font="Arial 12 bold", fg="White", height=3, width=5,
                  command=lambda: inserir("/"))
+
 btn_sub = Button(frame_button, text="-", bg="Gray", font="Arial 12 bold", fg="White", height=3, width=5,
                  command=lambda: inserir("-"))
 
@@ -93,13 +106,5 @@ btn_limpar.grid(row=3, column=0)
 btn_igual.grid(row=3, column=1)
 btn_0.grid(row=3, column=2)
 btn_div.grid(row=3, column=3)
-
-
-
-
-
-
-
-
 
 app.mainloop()
