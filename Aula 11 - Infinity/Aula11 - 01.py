@@ -1,10 +1,15 @@
-from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
+from customtkinter import *
 
-app = Tk()
+app = CTk()
 
 app.title("Agenda Telefonica")
+
+
+set_appearance_mode(
+    "System"
+)
 
 # Storage
 agenda = []
@@ -12,7 +17,6 @@ index = 0
 
 
 # Funções
-
 def adicionar() -> None:
     numero = txt_numero.get()
     nome = txt_nome.get()
@@ -60,8 +64,11 @@ def editarcontato() -> None:
     messagebox.showinfo("Sucesso!!",
                         "Dados Alterados com sucesso!")
 
+
 def listaclique(event) -> None:
     selecionar = lista.selection()
+    messagebox.showinfo("Guia", "Caso queira editar contato favor alterar no campo registro e"
+                                " depois apertar em Editar")
     global index
     index = lista.index(selecionar[0])
     contato = agenda[index]
@@ -69,6 +76,7 @@ def listaclique(event) -> None:
     txt_nome.insert(0, contato['Nome'])
     txt_numero.insert(0, contato['Telefone'])
     cb_categorias.insert(0, contato['Categoria'])
+
 
 def deletarcontato() -> None:
     selecionar = lista.selection()
@@ -88,30 +96,29 @@ def limparcampos() -> None:
     txt_numero.delete(0, END)
     cb_categorias.set("")
 
+
 # Frame
-
-
-frame_lista = Frame(app)
+frame_lista = CTkFrame(master=app)
 frame_lista.grid(row=2, column=0, pady=5)
-frame_registro = Frame(app)
+frame_registro = CTkFrame(master=app)
 frame_registro.grid(row=0, column=0, pady=5)
 
 # Labels
-label_nome = Label(frame_registro, text="Nome:", fg="red", font="Tahoma 10 bold")
+label_nome = CTkLabel(master=frame_registro, text="Nome:", font=("Tahoma", 10))
 label_nome.grid(row=0, column=0)
-label_numero = Label(frame_registro, text="Numero:", fg="red", font="Tahoma 10 bold")
+label_numero = CTkLabel(master=frame_registro, text="Numero:", font=("Tahoma", 10))
 label_numero.grid(row=0, column=2)
 
-label_lista = Label(frame_lista, text="Lista Telefonica", fg="red", font="Tahoma 10 bold")
+label_lista = CTkLabel(master=frame_lista, text="Lista Telefonica", font=("Tahoma", 10))
 label_lista.grid(row=0, pady=8)
 
-label_categorias = Label(frame_registro, text="Categorias:", fg="red", font="Tahoma 10 bold")
-label_categorias.grid(row=1, column=0, pady=5)
+label_categorias = CTkLabel(master=frame_registro, text="Categorias:", font=("Tahoma", 10))
+label_categorias.grid(row=1, column=0, pady=5, padx=5)
 
 # entry
-txt_nome = Entry(frame_registro, fg="red", font="Tahoma 10 bold")
+txt_nome = CTkEntry(master=frame_registro, font=("Tahoma", 10), width=100)
 txt_nome.grid(row=0, column=1, padx=5)
-txt_numero = Entry(frame_registro, fg="red", font="Tahoma 10 bold")
+txt_numero = CTkEntry(master=frame_registro, font=("Tahoma", 10), width=100)
 txt_numero.grid(row=0, column=3, padx=5)
 
 # Treeview\Tabela
@@ -124,23 +131,32 @@ lista.grid(row=1, columnspan=1, padx=8)
 
 lista.bind("<ButtonRelease-1>", listaclique)
 
-# Botões
-adicionar_botao = Button(frame_registro, text="Adicionar", command=lambda: adicionar())
+# BotõesCTk
+adicionar_botao = CTkButton(master=frame_registro, text="Adicionar", command=lambda: adicionar(), width=80,
+                            fg_color=("gray", "blue"), hover=True, hover_color=("#DB3E39", "#821D1A"))
+
 adicionar_botao.grid(row=1, column=2, padx=5, pady=5)
 
-deletar_botao = Button(frame_lista, text="Deletar", command=lambda: deletarcontato())
+deletar_botao = CTkButton(master=frame_lista, text="Deletar", command=lambda: deletarcontato(), width=80,
+                          fg_color=("gray", "blue"), hover=True, hover_color=("#DB3E39", "#821D1A"))
+
 deletar_botao.grid(row=1, column=2, padx=5)
 
-editar_botao = Button(frame_lista, text="Editar", command=lambda: editarcontato())
+editar_botao = CTkButton(master=frame_lista, text="Editar", command=lambda: editarcontato(), width=80,
+                         fg_color=("gray", "blue"), hover=True, hover_color=("#DB3E39", "#821D1A"))
+
 editar_botao.grid(row=1, column=1, padx=5)
 
-limpar_botao = Button(frame_registro, text="Limpar", command=lambda: limparcampos())
-limpar_botao.grid(row=1, column=3, padx=5, pady=5)
+limpar_botao = CTkButton(master=frame_registro, text="Limpar", command=lambda: limparcampos(), width=80,
+                         fg_color=("gray", "blue"), hover=True, hover_color=("#DB3E39", "#821D1A"))
 
+limpar_botao.grid(row=1, column=3, padx=5, pady=5)
 
 # combobox
 categorias = ["Amigos", "Familia", "Trabalho"]
-cb_categorias = ttk.Combobox(frame_registro, values=categorias)
+cb_categorias = ttk.Combobox(frame_registro, values=categorias, width=15)
 cb_categorias.grid(row=1, column=1, padx=5, pady=5)
+
+
 
 app.mainloop()
