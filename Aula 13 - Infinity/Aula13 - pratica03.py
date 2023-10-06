@@ -39,4 +39,5 @@ class Televisao(Eletronico):
         self.actualchannel = canal_atual
 
     def aumentarvolume(self, valor):
-        if self.soundactual + valor >= self.soundmax:
+        if self.power == True:
+            if self.soundactual + valor >= self.soundmax:
