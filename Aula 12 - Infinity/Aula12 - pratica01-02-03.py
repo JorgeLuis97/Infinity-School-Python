@@ -20,10 +20,6 @@ class Conta:
         else:
             print("Saldo Insuficiente")
 
-    def rendimento(self):
-        if self.saldo > 0:
-            self.saldo += self.saldo * self.taxa_de_rendimento
-            print(f'\nSaldo após rendimento: {self.saldo}\n')
 
 cliente = Conta(int(input("conta do Cliente: ")), input("Nome do Cliente: "),
                 float(input("Limite Cheque Especial: ")), float(input("Saldo do Cliente: ")))
